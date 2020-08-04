@@ -8,6 +8,9 @@ class HashTableEntry:
         self.next = None
 
 
+
+
+
 # Hash table can't have fewer than this many slots
 MIN_CAPACITY = 8
 
@@ -87,7 +90,10 @@ class HashTable:
 
         Implement this.
         """
+        hash = self.djb2(key)
 
+
+        self.stored += 1
 
 
     def delete(self, key):
