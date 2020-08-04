@@ -2,13 +2,51 @@ class HashTableEntry:
     """
     Linked List hash table key/value pair
     """
+    def __init__(self):
+        self.head = None
+        self.length = 0
+
+    def add(self, key, value):
+        node = HashTableEntryNode(key, value)
+        node.next = self.head
+        self.head = node
+        self.length += 1
+
+    def find(self, key):
+        current = self.head
+        while current:
+            if current.key == key:
+                return current.value
+            else:
+                current = current.next
+        return None
+
+    def delete(self, key):
+        if self.head.key == key:
+            self.head = None
+            self.length -= 1
+            return
+        previous = self.head
+        current = self.head.next
+        while current:
+            if current.key == key:
+                previous.next = current.next
+                self.length -= 1
+                return
+            else:
+                previous = current
+                current = current.next
+        return None
+
+
+class HashTableEntryNode:
+    """
+    Linked List hash table key/value pair
+    """
     def __init__(self, key, value):
         self.key = key
         self.value = value
         self.next = None
-
-
-
 
 
 # Hash table can't have fewer than this many slots
@@ -28,7 +66,10 @@ class HashTable:
 
         self.capacity = capacity
         self.stored = 0
-        self.table = [0]
+        self.table = [0] * self.capacity
+        for x in range(self.capacity):
+            hte = HashTableEntry
+            self.table[x] =
 
     def get_num_slots(self):
         """
@@ -91,6 +132,7 @@ class HashTable:
         Implement this.
         """
         hash = self.djb2(key)
+
 
 
         self.stored += 1
