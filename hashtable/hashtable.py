@@ -68,8 +68,8 @@ class HashTable:
         self.stored = 0
         self.table = [0] * self.capacity
         for x in range(self.capacity):
-            hte = HashTableEntry
-            self.table[x] =
+            hte = HashTableEntry()
+            self.table[x] = hte
 
     def get_num_slots(self):
         """
@@ -109,10 +109,10 @@ class HashTable:
 
         Implement this, and/or FNV-1.
         """
-        k = key.encode()
+        # k = key.encode()
         hash = 5381
-        for i in k:
-            hash = (hash * 33) + k
+        for i in key:
+            hash = (hash * 33) + ord(i)
         return hash
 
     def hash_index(self, key):
@@ -131,7 +131,9 @@ class HashTable:
 
         Implement this.
         """
-        hash = self.djb2(key)
+        hash = self.hash_index(key)
+        if not self.table[hash].find(key):
+            self.table[hash].add(key, value)
 
 
 
@@ -157,8 +159,8 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
-
+        hash = self.hash_index(key)
+        self.table[hash]
 
     def resize(self, new_capacity):
         """
