@@ -145,10 +145,13 @@ class HashTable:
         Remove the value stored with the given key.
 
         Print a warning if the key is not found.
-
-        Implement this.
         """
-        # Your code here
+
+        hash = self.hash_index(key)
+        if not self.table[hash].find(key):
+            return None
+        else:
+            self.table[hash].delete(key)
 
 
     def get(self, key):
@@ -157,10 +160,9 @@ class HashTable:
 
         Returns None if the key is not found.
 
-        Implement this.
         """
         hash = self.hash_index(key)
-        self.table[hash]
+        return self.table[hash].find(key)
 
     def resize(self, new_capacity):
         """
