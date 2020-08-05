@@ -22,10 +22,14 @@ class HashTableEntry:
         return None
 
     def delete(self, key):
-        if self.head.key == key:
-            self.head = None
-            self.length -= 1
-            return
+        if ((self.head.key == key) & (self.length == 1)):
+                self.head = None
+                self.length -= 1
+                return
+        if ((self.head.key == key) & (self.length != 1)):
+                self.head = self.head.next
+                self.length -= 1
+                return
         previous = self.head
         current = self.head.next
         while current:
@@ -134,6 +138,11 @@ class HashTable:
         hash = self.hash_index(key)
         if not self.table[hash].find(key):
             self.table[hash].add(key, value)
+        else:
+            self.table[hash].delete(key)
+            self.table[hash].add(key, value)
+
+
 
 
 
@@ -152,6 +161,7 @@ class HashTable:
             return None
         else:
             self.table[hash].delete(key)
+            self.stored -= 1
 
 
     def get(self, key):
@@ -171,8 +181,17 @@ class HashTable:
 
         Implement this.
         """
-        # Your code here
+        ht = HashTable(new_capacity)
+        for x in range(self.capacity):
+            while self.table[x].head:
+                key = self.table[x].head.key
+                value = self.table[x].head.value
+                ht.put(key, value)
+                self.delete(key)
 
+        self.table = ht.table
+        self.capacity = new_capacity
+        return
 
 
 if __name__ == "__main__":
