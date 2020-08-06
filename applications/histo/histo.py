@@ -34,9 +34,5 @@ def word_count(s):
         print("{:>15} {}".format(key, graph))
     return count
 
-# txtt = 'The quick brown fox jumped over the lazy turtle'
-
-# print(letter_count(ciphertext))
-# print(len(letter_count(ciphertext)))
 
 print(word_count(s))
