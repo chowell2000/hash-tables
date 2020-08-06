@@ -49,7 +49,7 @@ def decipher(s):
     decoded = "".join(coded)
     return decoded
 
-txtt = 'The quick brown fox jumped over the lazy turtle'
+# txtt = 'The quick brown fox jumped over the lazy turtle'
 
 # print(letter_count(ciphertext))
 # print(len(letter_count(ciphertext)))
