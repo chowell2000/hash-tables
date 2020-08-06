@@ -13,7 +13,7 @@ def slowfun_too_slow(x, y):
 vs = [[]]*15
 
 for x in range(0,15):
-    vs[x] = [((x**y)!) for y in range(1,6)]
+    vs[x] = [((math.factorial(x**y))// (x+y)) % 982451653 for y in range(1,6)]
 
 # factorials = [1]*300000
 #
@@ -25,10 +25,10 @@ def slowfun(x, y):
     Rewrite slowfun_too_slow() in here so that the program produces the same
     output, but completes quickly instead of taking ages to run.
     """
-    v = powers[x][y -1]
-    v = math.factorial(v)
-    v //= (x + y)
-    v %= 982451653
+    v = vs[x][y -1]
+    # v = math.factorial(v)
+    # v //= (x + y)
+    # v %= 982451653
 
     return v
     # return
